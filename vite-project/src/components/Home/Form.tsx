@@ -9,26 +9,20 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   contact: z
     .string()
-    .regex(/^\+?\d{7,15}$/, "Contact must be 7-15 digits, optional +"),
+    .regex(/^\+?\d{7,15}$/, "Contact must be 7–15 digits, optional +"),
   photo: z
     .any()
-    .refine((files) => files && files.length === 1, "Photo is required")
-    .refine(
-      (files) => files && files[0]?.type.startsWith("image/"),
-      "File must be an image"
-    ),
+    .refine(files => files && files.length === 1, "Photo is required")
+    .refine(files => files && files[0]?.type.startsWith("image/"), "File must be an image"),
   cv: z
     .any()
-    .refine((files) => files && files.length === 1, "CV is required")
-    .refine(
-      (files) => files && files[0]?.type === "application/pdf",
-      "CV must be a PDF"
-    ),
+    .refine(files => files && files.length === 1, "CV is required")
+    .refine(files => files && files[0]?.type === "application/pdf", "CV must be a PDF"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
-const Form: React.FC = () => {
+const ContactForm: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -49,131 +43,112 @@ const Form: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50 py-12 px-4">
-      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-semibold text-blue-800 mb-2">Application Form</h2>
-          <p className="text-yellow-600">Please fill in your details below</p>
-        </div>
-
+    <div className="min-h-screen py-12 px-4 mt-20">
+      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-blue-700 mb-1">
-              Name <span className="text-yellow-500">*</span>
+            <label className="block text-lg font-semibold text-gray-700 uppercase mb-1">
+              Name
             </label>
             <input
               type="text"
               {...register("name")}
-              className="mt-1 block w-full rounded-lg border-2 border-blue-100 px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
+              className="w-full bg-gray-100 border border-gray-200 rounded-md px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
+              placeholder="Your full name"
             />
-            {errors.name?.message && (
-              <p className="mt-1 text-sm text-red-500">{errors.name.message?.toString()}</p>
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
             )}
           </div>
 
-          {/* Address */}
           <div>
-            <label className="block text-sm font-medium text-blue-700 mb-1">
-              Address <span className="text-yellow-500">*</span>
+            <label className="block text-lg font-semibold text-gray-700 uppercase mb-1">
+              Address
             </label>
             <input
               type="text"
               {...register("address")}
-              className="mt-1 block w-full rounded-lg border-2 border-blue-100 px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
+              className="w-full bg-gray-100 border border-gray-200 rounded-md px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
+              placeholder="Your address"
             />
-            {errors.address?.message && (
+            {errors.address && (
               <p className="mt-1 text-sm text-red-500">{errors.address.message}</p>
             )}
           </div>
 
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-blue-700 mb-1">
-              Email <span className="text-yellow-500">*</span>
-            </label>
-            <input
-              type="email"
-              {...register("email")}
-              className="mt-1 block w-full rounded-lg border-2 border-blue-100 px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
-            />
-            {errors.email?.message && (
-              <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-            )}
-          </div>
-
-          {/* Contact */}
-          <div>
-            <label className="block text-sm font-medium text-blue-700 mb-1">
-              Contact <span className="text-yellow-500">*</span>
-            </label>
-            <input
-              type="text"
-              {...register("contact")}
-              className="mt-1 block w-full rounded-lg border-2 border-blue-100 px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
-            />
-            {errors.contact?.message && (
-              <p className="mt-1 text-sm text-red-500">{errors.contact.message}</p>
-            )}
-          </div>
-
-          {/* Photo Upload */}
-          <div>
-            <label className="block text-sm font-medium text-blue-700 mb-1">
-              Photo <span className="text-yellow-500">*</span>
-            </label>
-            <div className="mt-1 flex items-center justify-center w-full">
-              <label className="flex flex-col w-full border-2 border-blue-100 border-dashed rounded-lg cursor-pointer hover:bg-blue-50 transition">
-                <div className="flex flex-col items-center justify-center pt-5 pb-6 px-4">
-                  <svg className="w-8 h-8 mb-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
-                  <p className="text-sm text-gray-500">Upload your photo (JPG, PNG)</p>
-                </div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  {...register("photo")}
-                  className="hidden"
-                />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-lg font-semibold text-gray-700 uppercase mb-1">
+                Email
               </label>
+              <input
+                type="email"
+                {...register("email")}
+                className="w-full bg-gray-100 border border-gray-200 rounded-md px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
+                placeholder="you@example.com"
+              />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+              )}
             </div>
-            {errors.photo?.message && (
+            <div>
+              <label className="block text-lg font-semibold text-gray-700 uppercase mb-1">
+                Contact
+              </label>
+              <input
+                type="text"
+                {...register("contact")}
+                className="w-full bg-gray-100 border border-gray-200 rounded-md px-4 py-3 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 focus:outline-none transition"
+                placeholder="+123456789"
+              />
+              {errors.contact && (
+                <p className="mt-1 text-sm text-red-500">{errors.contact.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-lg font-semibold text-gray-700 uppercase mb-1">
+              Photo
+            </label>
+            <label className="flex flex-col items-center border-2 border-dashed border-gray-200 bg-gray-50 rounded-md cursor-pointer py-6 text-center hover:bg-gray-100 transition">
+              <span className="text-gray-500">Click to upload a photo</span>
+              <input
+                type="file"
+                accept="image/*"
+                {...register("photo")}
+                className="hidden"
+              />
+            </label>
+            {errors.photo && (
               <p className="mt-1 text-sm text-red-500">{errors.photo.message?.toString()}</p>
             )}
           </div>
 
-          {/* CV Upload */}
           <div>
-            <label className="block text-sm font-medium text-blue-700 mb-1">
-              CV (PDF) <span className="text-yellow-500">*</span>
+            <label className="block text-lg font-semibold text-gray-700 uppercase mb-1">
+              CV (PDF)
             </label>
-            <div className="mt-1 flex items-center justify-center w-full">
-              <label className="flex flex-col w-full border-2 border-blue-100 border-dashed rounded-lg cursor-pointer hover:bg-blue-50 transition">
-                <div className="flex flex-col items-center justify-center pt-5 pb-6 px-4">
-                  <svg className="w-8 h-8 mb-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                  </svg>
-                  <p className="text-sm text-gray-500">Upload your CV (PDF only)</p>
-                </div>
-                <input
-                  type="file"
-                  accept="application/pdf"
-                  {...register("cv")}
-                  className="hidden"
-                />
-              </label>
-            </div>
-            {errors.cv?.message && (
+            <label className="flex flex-col items-center border-2 border-dashed border-gray-200 bg-gray-50 rounded-md cursor-pointer py-6 text-center hover:bg-gray-100 transition">
+              <span className="text-gray-500">Click to upload your CV (PDF)</span>
+              <input
+                type="file"
+                accept="application/pdf"
+                {...register("cv")}
+                className="hidden"
+              />
+            </label>
+            {errors.cv && (
               <p className="mt-1 text-sm text-red-500">{errors.cv.message?.toString()}</p>
             )}
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+            className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-semibold px-6 py-3 rounded shadow transition-all duration-300"
           >
-            Submit Application
+            Submit
           </button>
         </form>
       </div>
@@ -181,4 +156,4 @@ const Form: React.FC = () => {
   );
 };
 
-export default Form;
+export default ContactForm;
