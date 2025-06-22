@@ -60,23 +60,23 @@ const Footer = () => {
             <div>
               <div className="font-semibold mb-2">Company</div>
               <ul className="text-gray-500 text-[15px] space-y-1">
-                <li><Link to="/company/about" className="hover:text-yellow-600">About us</Link></li>
+                <li><Link to="/company/about-us" className="hover:text-yellow-600">About us</Link></li>
                 <li><Link to="/company/team" className="hover:text-yellow-600">Team</Link></li>
-                <li><Link to="/company/careers" className="hover:text-yellow-600">Work with us</Link></li>
+                <li><Link to="/company/work-with-us" className="hover:text-yellow-600">Work with us</Link></li>
                 <li><Link to="/company/awards" className="hover:text-yellow-600">Awards & Achievements</Link></li>
-                <li><Link to="/company/media-kit" className="hover:text-yellow-600">Media Kit</Link></li>
+                
               </ul>
               <div className="font-semibold mt-4 mb-2">Events & Media</div>
               <ul className="text-gray-500 text-[15px] space-y-1">
-                <li><Link to="/events" className="hover:text-yellow-600">Events</Link></li>
-                <li><Link to="/media" className="hover:text-yellow-600">Media</Link></li>
-                <li><Link to="/publications" className="hover:text-yellow-600">Publications</Link></li>
+                <li><Link to="/events-media/events" className="hover:text-yellow-600">Events</Link></li>
+                <li><Link to="/events-media/media" className="hover:text-yellow-600">Media</Link></li>
+                <li><Link to="/events-media/publications" className="hover:text-yellow-600">Publications</Link></li>
               </ul>
             </div>
             <div>
               <div className="font-semibold mb-2 mt-2 md:mt-0">Blog</div>
               <ul className="text-gray-500 text-[15px] space-y-1">
-                <li><Link to="/blog" className="hover:text-yellow-600">Blog</Link></li>
+                <li><Link to="/blogs" className="hover:text-yellow-600">Blog</Link></li>
               </ul>
               <div className="font-semibold mt-4 mb-2">Contact</div>
               <ul className="text-gray-500 text-[15px] space-y-1">

@@ -66,7 +66,7 @@ const ComingSoon = () => {
         <p className="text-gray-600 dark:text-gray-300 mb-6">
           We're cooking up something great. This feature/page is under construction. Stay tuned!
         </p>
-        <Button asChild className="px-6 py-5 h-auto text-2xl font-semibold text-blue-500 bg-[#FFDF20] hover:bg-yellow-400 transition-colors">
+        <Button asChild className="px-6 py-5 h-auto text-2xl font-semibold text-blue-500 bg-[#FFDF20] hover:bg-yellow-400 transition-colors rounded-none">
           <Link to="/">Back to Home</Link>
         </Button>
       </div>
