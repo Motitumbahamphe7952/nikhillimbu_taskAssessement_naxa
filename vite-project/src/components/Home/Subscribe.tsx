@@ -2,7 +2,7 @@ import bgImage from "@/assets/subscribesection.png";
 
 const Subscribe = () => {
   return (
-    <section className="relative py-16 px-4 sm:px-8 mb-[-250px] z-60">
+    <section className="relative py-16 px-4 sm:px-8 mb-[-250px] z-10">
       <div
         className="w-full max-w-4xl mx-auto rounded-2xl px-6 py-12 sm:px-12 text-center text-white"
         style={{
