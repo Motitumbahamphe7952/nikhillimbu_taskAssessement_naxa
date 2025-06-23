@@ -138,27 +138,18 @@ const NavBar = () => {
 
       <div className="flex items-center gap-4 md:gap-6">
        <NavLink
-  to="/contact"
-  className="
-    inline-flex items-center gap-1 whitespace-nowrap
-    bg-yellow-300 hover:bg-[#FFAB00]
-    text-[#0B5BF5] font-semibold
-    text-xs sm:text-sm md:text-base lg:text-lg
-    px-3 md:px-5 py-2 transition
-  "
->
-  <span className="transform translate-x-0 group-hover:-translate-x-1 duration-200 ease-in-out">
-    Let&apos;s Talk
-  </span>
-  <ArrowRight
-    size={16}
-    className="
-      inline h-4 w-4 text-[#0B5BF5]
-      transform opacity-0 group-hover:translate-x-1 group-hover:opacity-100
-      transition-all duration-200 ease-in-out
-    "
-  />
-</NavLink>
+        to="/contact"
+        className="group inline-flex items-center gap-1 whitespace-nowrap bg-yellow-300 hover:bg-[#FFAB00] text-[#0B5BF5] font-semibold text-xs sm:text-sm md:text-base lg:text-lg px-3 md:px-5 py-2 transition-colors duration-200 ease-in-out"
+      >
+        <span className="transform translate-x-0 group-hover:-translate-x-1 duration-200 ease-in-out">
+          Let&apos;s Talk
+        </span>
+        <ArrowRight
+          size={16}
+          className="inline h-4 w-4 text-[#0B5BF5] transform opacity-0 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-200 ease-in-out"
+        />
+      </NavLink>
+
         <button
           className="lg:hidden z-50"
           onClick={() => setMenuOpen(open => !open)}
