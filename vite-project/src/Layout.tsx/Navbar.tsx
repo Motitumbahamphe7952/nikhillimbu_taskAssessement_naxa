@@ -169,9 +169,11 @@ const NavBar = () => {
 
       <div
         ref={mobileMenuRef}
-        className={`lg:hidden fixed top-0 right-0 bottom-0 w-[40%] bg-[#ffdf20] z-40 transform transition-transform duration-300 ease-in-out ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`lg:hidden fixed top-0 right-0 bottom-0 w-[70%]
+  bg-gradient-to-b from-[#FFAB00] to-[#ffdf20]
+  z-40 transform transition-transform duration-300 ease-in-out ${
+    menuOpen ? "translate-x-0" : "translate-x-full"
+  }`}
       >
         <div className="flex justify-end p-4">
           <button
