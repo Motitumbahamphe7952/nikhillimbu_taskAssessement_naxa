@@ -218,6 +218,20 @@ const NavBar = () => {
           >
             Blogs
           </NavLink>
+          <NavLink
+            to="/form"
+            className="block text-gray-800 text-lg py-2 hover:text-blue-600 transition-colors"
+            onClick={() => setMenuOpen(false)}
+          >
+            Form
+          </NavLink>
+          <NavLink
+            to="/map"
+            className="block text-gray-800 text-lg py-2 hover:text-blue-600 transition-colors"
+            onClick={() => setMenuOpen(false)}
+          >
+            Maps
+          </NavLink>
         </div>
       </div>
     </nav>
