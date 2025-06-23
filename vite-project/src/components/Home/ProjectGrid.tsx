@@ -79,7 +79,6 @@ const Card: React.FC<CardProps> = ({ project, rowMode }) => (
 );
 
 const ProjectGrid: React.FC = () => {
-  /* modal support */
   const [openProject, setOpenProject] = useState<Project | null>(null);
   useEffect(() => {
     const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpenProject(null);
@@ -124,7 +123,7 @@ const ProjectGrid: React.FC = () => {
         <button
           key={p.id}
            className={`
-            group                      /* 👈 make this a hover-group */
+            group                      
             ${rowMode
                 ? "text-left"
                 : "mt-10 flex-[1_1_100%] md:flex-[0_0_46%] max-w-full md:max-w-[640px] text-left"}

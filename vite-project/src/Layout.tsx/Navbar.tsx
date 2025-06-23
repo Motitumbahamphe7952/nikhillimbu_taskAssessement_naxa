@@ -84,7 +84,7 @@ const NavBar = () => {
         </NavLink>
       </div>
 
-      <div className="hidden lg:flex items-center gap-12 text-gray-800 text-md font-medium">
+      <div className="hidden lg:flex items-center gap-8 text-gray-800 text-md font-medium">
         <NavLink to="/services" className="hover:text-blue-600 transition">
           Services
         </NavLink>

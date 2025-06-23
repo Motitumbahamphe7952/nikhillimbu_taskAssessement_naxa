@@ -55,15 +55,25 @@ const ProjectCategory = () => {
       </div>
        <div>
       {selected !== DEFAULT_CAT && (
-        <div
-          className="prose max-w-6xl mx-auto my-20  text-xl text-justify "
-          dangerouslySetInnerHTML={{
-            __html:
-              categoriesData?.find((c) => c.title === selected)?.description ??
-              "",
-          }}
-        />
+      <div
+        className="
+          prose max-w-6xl mx-auto my-20
+          text-sm
+          font-light
+          sm:text-sm
+          md:text-lg
+          lg:text-lg
+          text-center
+          md:text-justify
+        "
+        dangerouslySetInnerHTML={{
+          __html:
+            categoriesData?.find((c) => c.title === selected)?.description ??
+            "",
+        }}
+      />
       )}
+
 
       <div className="w-full mt-8">
         {selected && <ProjectGrid />}
