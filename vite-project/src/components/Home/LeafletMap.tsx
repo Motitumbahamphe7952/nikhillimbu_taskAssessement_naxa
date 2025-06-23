@@ -13,7 +13,6 @@ import type { LatLngExpression } from 'leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// custom icon (public/images/…)
 const defaultIcon = new L.Icon({
   iconUrl: '/images/marker-icon.png',
   iconRetinaUrl: '/images/marker-icon-2x.png',
